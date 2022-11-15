@@ -10,7 +10,7 @@ import authenticator from "~/services/auth.server";
  * @param param0
  * @returns
  */
- export let loader: LoaderFunction = async ({ request }) => {
+export let loader: LoaderFunction = async ({ request }) => {
   return await authenticator.isAuthenticated(request, {
     failureRedirect: "/login",
   });
@@ -28,13 +28,15 @@ export default function Index() {
   const data = useLoaderData();
 
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
+    <div>
       <h1>Welcome {data?.name} {data?.token}</h1>
       <Link to="films">
         Films
       </Link>
       <Form method="post">
-        <button>Log Out</button>
+        <div className="absolute right-1 top-1 ...">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded rig">Log Out</button>
+        </div>
       </Form>
     </div>
   );
